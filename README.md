@@ -1,15 +1,22 @@
-# talk-intro-apache-pulsar
+# test-pulsar-ui
 
-> This talk aims to present [Apache Pulsar](https://pulsar.apache.org/)
+> My superb Nuxt.js project
 
-## Installation
+## Build Setup
 
-* Download Apache Pulsar, here: https://pulsar.apache.org/en/download/
+``` bash
+# install dependencies
+$ npm install
 
-* Untar the file
+# serve with hot reload at localhost:3000
+$ npm run dev
 
-* Start a standalone pulsar
-```bash
-bin/pulsar standalone
+# build for production and launch server
+$ npm run build
+$ npm start
+
+# generate static project
+$ npm run generate
 ```
 
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

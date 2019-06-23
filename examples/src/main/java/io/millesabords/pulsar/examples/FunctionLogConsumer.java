@@ -4,7 +4,7 @@ import org.apache.pulsar.client.api.*;
 
 import java.util.concurrent.TimeUnit;
 
-public class BasicConsumer {
+public class FunctionLogConsumer {
 
     public static void main(String[] args) throws PulsarClientException {
 
@@ -13,8 +13,9 @@ public class BasicConsumer {
                 .build();
 
         Consumer consumer = client.newConsumer()
-                .topic("my-topic")
-                .subscriptionName("my-subscription")
+                .topic("talk/demo/logs")
+                .subscriptionName("demo-log-subscription")
+                .subscriptionType(SubscriptionType.Exclusive)
                 .subscribe();
 
         consumer.seek(MessageId.earliest);
@@ -22,12 +23,16 @@ public class BasicConsumer {
         boolean stopped = false;
 
         do {
-            Message msg = consumer.receive(1, TimeUnit.SECONDS);
+            Message msg = consumer.receive(100, TimeUnit.SECONDS);
 
             stopped = msg == null;
 
             if (!stopped) {
-                System.out.printf("Message received: %s", new String(msg.getData()));
+                System.out.printf("Message received: %s (from %s, seqid=%d, props=%s)\n",
+                        new String(msg.getData()),
+                        msg.getProducerName(),
+                        msg.getSequenceId(),
+                        msg.getProperties().toString());
 
                 consumer.acknowledge(msg);
             }
