@@ -40,6 +40,7 @@ public class PulsarClientHelper {
         return PulsarAdmin.builder().serviceHttpUrl(serviceUrl).build();
     }*/
 
+
     public static Producer<byte[]> createBasicProducer(String serviceUrl, String topic, String producerName)
             throws PulsarClientException {
 
@@ -74,6 +75,20 @@ public class PulsarClientHelper {
         final PulsarClient client = createClientIfNeeded(serviceUrl);
 
         final Consumer consumer = client.newConsumer()
+                .topic(topic)
+                .subscriptionName(subsName)
+                .subscriptionType(subType)
+                .subscribe();
+
+        return consumer;
+    }
+
+    public static <T> Consumer<T> createConsumer(String serviceUrl, String topic, String subsName, SubscriptionType subType, JSONSchema<T> schema)
+            throws PulsarClientException {
+
+        final PulsarClient client = createClientIfNeeded(serviceUrl);
+
+        final Consumer consumer = client.newConsumer(schema)
                 .topic(topic)
                 .subscriptionName(subsName)
                 .subscriptionType(subType)

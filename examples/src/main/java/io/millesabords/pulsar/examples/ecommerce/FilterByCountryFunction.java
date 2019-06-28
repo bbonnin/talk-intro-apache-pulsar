@@ -41,7 +41,9 @@ public class FilterByCountryFunction implements Function<Order, Order> {
 
         if (country != null && "US".equals(country.getIsoCode())) {
             // Send this order to US specific topic
-            context.publish("orders-us", order);
+            log.info("Send message US topic", order);
+            System.err.println("Send message in topic for US : " + order);
+            context.publish("talk/demo/orders-us", order);
             //return order;
         }
 

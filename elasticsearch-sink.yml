@@ -1,0 +1,4 @@
+configs:
+  elasticSearchUrl: http://localhost:9200
+  indexName: ecommerce
+  typeName: orders_us

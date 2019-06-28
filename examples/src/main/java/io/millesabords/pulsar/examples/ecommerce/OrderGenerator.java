@@ -1,14 +1,12 @@
 package io.millesabords.pulsar.examples.ecommerce;
 
 import com.github.javafaker.Faker;
-import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import io.millesabords.pulsar.examples.common.PulsarClientHelper;
 import org.apache.pulsar.client.api.MessageId;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.impl.schema.JSONSchema;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
@@ -21,9 +19,6 @@ public class OrderGenerator {
 
     public static void main(String[] args) throws IOException, GeoIp2Exception {
 
-        File database = new File("GeoLite2-Country.mmdb");
-        DatabaseReader dbReader = new DatabaseReader.Builder(database).build();
-
 
         final Producer<Order> producer = PulsarClientHelper.createBasicProducer(
                 "pulsar://localhost:6650",
@@ -34,9 +29,6 @@ public class OrderGenerator {
         for (int i=0; i<100; i++) {
             final Order order = newOrder();
             final MessageId msgId = producer.send(order);
-
-            //CountryResponse resp = dbReader.country(InetAddress.getByName(order.getIpAddress()));
-            //System.out.println(resp.getCountry().getIsoCode());
 
             try {
                 Thread.sleep(Math.round(Math.random() * 1000));
