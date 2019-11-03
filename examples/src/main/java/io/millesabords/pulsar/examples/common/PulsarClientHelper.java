@@ -108,9 +108,10 @@ public class PulsarClientHelper {
     }
 
     public static void showMessage(Message msg) {
-        System.out.printf("Message received: %s, from %s with id=%s\n",
+        System.out.printf("Message received: %s, from %s with id=%s and props=%s\n",
                 new String(msg.getData()),
                 msg.getProducerName(),
-                msg.getMessageId());
+                msg.getMessageId(),
+                msg.getProperties());
     }
 }

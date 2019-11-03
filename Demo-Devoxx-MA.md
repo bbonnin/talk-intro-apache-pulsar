@@ -1,4 +1,4 @@
-# Demo 
+# Demo Devoxx MA
 
 ## Premières etapes
 
@@ -133,29 +133,3 @@ curl -s http://localhost:8080/admin/v2/functions/connectors | jq
 ```
 pulsar-admin sink delete --tenant talk --namespace demo --name elasticsearch-sink
 ```
-
-
-* démarrer pulsar-express
-
-
-
-Cas d'utilisation:
-
-- Archi :
-  OK pulsar standalone
-  OK 1 producer (illustration du dev de producteur avec schema)
-  KO 1 consommateur (traitement des messages) => MONTER PLUTOT LE CLIENT EN MODE CLI
-  OK 1 fonction qui filtre (par pays) + FABRICATION DE STATS (APPELE LA FONCTION : ????)
-  KO 1 fonction qui fait des stats (moyenne) -> CF CI-DESSUS
-  KO 1 fonction pour des alertes : C'EST TROP
-  - 1 IO (elasticsearch pour avoir dashboard kibana) => peut faire des diagrammes sur la moyennes des paniers, cela peut éviter de faire une fonction de stats ? ou ne prendre que la partie geo-location (suite à enrichissement par la fonction)
-
-- site ecommerce
-  - enrichissement des transactions (geoloc de l'adresse ip, anonymisation du numeros de CB)
-  - comptage des paniers moyens
-  - autres stats sur le panier
-  - filtrage pour etude sur un produit particulier ou une origine de l'acheteur
-  - detection de fraude (comment ? plusieurs achats d'un meme user dans des pays differents mais à des dates tres proches ?)
-- capteurs
-  - alertes sur seuil
-  - alertes configurées par user config

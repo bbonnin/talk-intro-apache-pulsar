@@ -47,7 +47,7 @@ public class FilterByCountryFunction implements Function<Order, Order> {
             //return order;
         }
 
-
+        /*
         context.incrCounter("num-orders", 1);
         long num = context.getCounter("num-orders");
         log.info("#orders: {}", num);
@@ -56,8 +56,9 @@ public class FilterByCountryFunction implements Function<Order, Order> {
         final double newAverage = (prevAverage * (num - 1) + order.getAmount()) / num;
         setAvgAmount(newAverage, context);
         log.info("avg amount: {}", newAverage);
+        */
 
-        return null;
+        return order;
     }
 
     private void loadIpDatabase(String dbPath) {

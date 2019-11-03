@@ -29,6 +29,7 @@ public class OrderGenerator {
         for (int i=0; i<100; i++) {
             final Order order = newOrder();
             final MessageId msgId = producer.send(order);
+            System.out.println("Message sent " + msgId + " -> " + order);
 
             try {
                 Thread.sleep(Math.round(Math.random() * 1000));

@@ -1,4 +1,3 @@
 configs:
-  elasticSearchUrl: http://localhost:9200
-  indexName: ecommerce
-  typeName: orders_us
+  elasticSearchUrl: http://host.docker.internal:9200
+  indexName: ecommerce-orders-us

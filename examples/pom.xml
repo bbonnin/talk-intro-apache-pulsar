@@ -10,7 +10,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <pulsar.version>2.3.2</pulsar.version>
+        <pulsar.version>2.4.1</pulsar.version>
     </properties>
 
     <dependencies>
@@ -23,6 +23,11 @@
         <dependency>
             <groupId>org.apache.pulsar</groupId>
             <artifactId>pulsar-client</artifactId>
+            <version>${pulsar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pulsar</groupId>
+            <artifactId>pulsar-flink</artifactId>
             <version>${pulsar.version}</version>
         </dependency>
         <!--dependency>
@@ -44,6 +49,11 @@
             <groupId>org.apache.pulsar</groupId>
             <artifactId>pulsar-broker-common</artifactId>
             <version>${pulsar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-json</artifactId>
+            <version>1.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
