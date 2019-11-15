@@ -1,7 +1,6 @@
 package io.millesabords.pulsar.examples.ecommerce;
 
 import com.github.javafaker.Faker;
-import com.maxmind.geoip2.exception.GeoIp2Exception;
 import io.millesabords.pulsar.examples.common.PulsarClientHelper;
 import org.apache.pulsar.client.api.MessageId;
 import org.apache.pulsar.client.api.Producer;
@@ -17,16 +16,15 @@ public class OrderGenerator {
 
     private static Random r = new Random();
 
-    public static void main(String[] args) throws IOException, GeoIp2Exception {
-
+    public static void main(String[] args) throws IOException {
 
         final Producer<Order> producer = PulsarClientHelper.createBasicProducer(
-                "pulsar://localhost:6650",
-                "talk/demo/orders-all",
+                Config.get().getPulsarUrl(),
+                Config.get().getAllOrdersTopic(),
                 "orders-producer",
                 JSONSchema.of(Order.class));
 
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<500; i++) {
             final Order order = newOrder();
             final MessageId msgId = producer.send(order);
             System.out.println("Message sent " + msgId + " -> " + order);
@@ -48,6 +46,7 @@ public class OrderGenerator {
                 faker.idNumber().valid(),
                 new Date().getTime(),
                 faker.internet().publicIpV4Address(),
+                faker.food().ingredient(),
                 faker.number().randomDouble(2, 1, 1000),
                 r.nextInt(10) + 1,
                 faker.internet().emailAddress());

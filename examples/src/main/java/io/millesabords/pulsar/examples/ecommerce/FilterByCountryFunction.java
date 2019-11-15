@@ -19,8 +19,6 @@ public class FilterByCountryFunction implements Function<Order, Order> {
 
     private Logger log;
 
-
-
     @Override
     public Order process(Order order, Context context) throws Exception {
 
@@ -41,9 +39,10 @@ public class FilterByCountryFunction implements Function<Order, Order> {
 
         if (country != null && "US".equals(country.getIsoCode())) {
             // Send this order to US specific topic
-            log.info("Send message US topic", order);
+            log.info("Send message to US topic", order);
             System.err.println("Send message in topic for US : " + order);
-            context.publish("talk/demo/orders-us", order);
+            //context.newOutputMessage(Config.get().getUsOrdersTopic(), null).value(order).sendAsync();
+            context.publish(Config.get().getUsOrdersTopic(), order);
             //return order;
         }
 

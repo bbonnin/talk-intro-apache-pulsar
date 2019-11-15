@@ -17,9 +17,9 @@ public class OrderConsumer {
 
         try {
             consumer = PulsarClientHelper.createConsumer(
-                    "pulsar://localhost:6650",
-                    "talk/demo/orders-all",
-                    "demo-exclusive-subscription",
+                    Config.get().getPulsarUrl(),
+                    Config.get().getAllOrdersTopic(),
+                    "demo-ecommerce-orders-all-subscription",
                     SubscriptionType.Exclusive,
                     JSONSchema.of(Order.class));
 

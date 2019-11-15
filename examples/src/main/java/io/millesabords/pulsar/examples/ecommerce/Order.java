@@ -15,6 +15,8 @@ public class Order {
 
     private String ipAddress;
 
+    private String productId;
+
     private double amount;
 
     private int quantity;

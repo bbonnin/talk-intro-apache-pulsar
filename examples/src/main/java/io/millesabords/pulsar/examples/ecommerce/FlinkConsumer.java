@@ -10,12 +10,13 @@ public class FlinkConsumer {
 
     public static void main(String[] args) throws Exception {
 
-        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        final StreamExecutionEnvironment env = StreamExecutionEnvironment
+                .getExecutionEnvironment();
 
         final PulsarSourceBuilder<Order> builder = PulsarSourceBuilder
                 .builder(new OrderDeserializationSchema())
-                .serviceUrl("pulsar://localhost:6650")
-                .topic("talk/demo/orders-all")
+                .serviceUrl(Config.get().getPulsarUrl())
+                .topic(Config.get().getAllOrdersTopic())
                 .subscriptionName("flink-orders-all-sub");
 
         final SourceFunction<Order> source = builder.build();
