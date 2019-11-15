@@ -1,3 +1,5 @@
+demo/data/
+demo/log
 *.nar
 *.mmdb
 target/

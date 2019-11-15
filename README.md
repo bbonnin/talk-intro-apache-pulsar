@@ -1,22 +1,8 @@
-# test-pulsar-ui
+# Talk Intro Apache Pulsar
 
-> My superb Nuxt.js project
+Content:
+* `demo`: scripts for a demo (start clients, functions, connectors, ...)
+* `examples`: Java code examples
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+Demos:
+* `Demo-Devoxx-MA.md`: steps description for Devoxx Morocco 2019 
